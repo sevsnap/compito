@@ -1,3 +1,5 @@
+enum enum_t{};
+
 class Classe{
   public:
     Classe();
@@ -5,8 +7,13 @@ class Classe{
     Classe(Classe& c);
     ~Classe();
     
+    Classe& operator= (const Classe&);
     int operator%(int s);
     int operator[](int s);
+    int operator!();
+    Class& operator+=(const Class& c);
+    friend ostream& operator<< (ostream&, const Classe&);
+    friend istream& operator>> (istream&, Classe&);
   private:
   
 };
@@ -14,9 +21,15 @@ class Classe{
 Classe::Classe(){
 
 }
+
 Classe::Classe(//parametri){
 
 }
+
+Classe::Classe(Classe& c){
+
+}
+
 Classe::~Classe(){
 
 }
