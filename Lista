@@ -1,0 +1,39 @@
+class Lista{
+  
+  public:
+    Lista();
+    Lista(const Lista& l);
+    ~Lista();
+    inserisci(int);
+  private:
+    struct elem{
+      int val;
+      elem *next;
+      }
+    elem *first;
+  };
+  
+  Lista::Lista(){
+    elem = NULL
+    }
+  
+  Lista::Lista(const Lista& l){
+    
+    if(l.first == NULL){
+      first = NULL;
+      return;
+      }
+    
+    elem *current_element = new elem;
+    current_element->value = l.first->value;
+    current_element->next = NULL;
+    first = current_element;
+    
+    for(elem *e = l.first->next; e != NULL; e = e->next){
+      elem *newe = new elem;
+      newe->value = e->value;
+      newe->next = NULL;
+      current_elem->next = newe;
+      current_elem = newe;
+      }
+      
