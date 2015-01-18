@@ -16,6 +16,8 @@ class Classe{
     friend ostream& operator<< (ostream&, const Classe&);
     friend istream& operator>> (istream&, Classe&);
   private:
+    void copia (const Classe& m);
+    void distruggi();
   
 };
 
@@ -28,9 +30,32 @@ Classe::Classe(//parametri){
 }
 
 Classe::Classe(Classe& c){
-
+  copia(c);
 }
 
 Classe::~Classe(){
+  distuggi();
+}
+
+Classe& Classe::operator= (const Classe& m)
+{
+  if (this != &m)
+    {
+      distruggi();
+      copia(m);
+    }
+  return *this;
+}
+
+ostream& operator<<(ostream& os, const Classe&){
+
+  return os;
+}
+
+void Classe::copia (const Classe& m){
+
+}
+
+void Classe::distruggi(){
 
 }
