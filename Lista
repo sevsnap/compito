@@ -2,38 +2,74 @@ class Lista{
   
   public:
     Lista();
-    Lista(const Lista& l);
+    Lista(const Lista&);
     ~Lista();
     inserisci(int);
+    inserisci_in_coda(int);
   private:
     struct elem{
       int val;
       elem *next;
+      elem *prev;
       }
     elem *first;
+    elem *last;
   };
   
   Lista::Lista(){
-    elem = NULL
+    first = NULL;
+    last = NULL;
     }
   
   Lista::Lista(const Lista& l){
     
     if(l.first == NULL){
       first = NULL;
+      last = NULL;
       return;
-      }
+    }
     
-    elem *current_element = new elem;
-    current_element->value = l.first->value;
-    current_element->next = NULL;
-    first = current_element;
+    elem *current_elem = new elem;
+    current_elem->value = l.first->value;
+    current_elem->next = NULL;
+    current_elem->prev = NULL;
+    first = current_elem;
     
     for(elem *e = l.first->next; e != NULL; e = e->next){
       elem *newe = new elem;
       newe->value = e->value;
       newe->next = NULL;
+      newe->prev = current_elem;
       current_elem->next = newe;
       current_elem = newe;
-      }
-      
+    }
+    
+    last = current_element;
+    
+  }
+  
+  Lista::~Lista(){
+    elem *e = first;
+    elem *tmp;
+    while(e != NULL){
+      tmp = e->next;
+      delete e;
+      e = tmp;
+    }
+  }
+  
+  void Lista::inserisci(int v){
+    elem *e = new elem;
+    e->value = v;
+    e->next = first;
+    e->prev = NULL;
+    first = e;
+    }
+    
+  void Lista::inserisci_in_coda(int v){
+    elem *e = new elem;
+    e->value = v;
+    e->next = NULL;
+    e->prev = last;
+    last = e;
+  }
