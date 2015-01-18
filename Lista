@@ -15,96 +15,96 @@ class Lista{
       }
     elem *first;
     elem *last;
-  };
+};
   
-  Lista::Lista(){
+Lista::Lista(){
+  first = NULL;
+  last = NULL;
+}
+
+Lista::Lista(const Lista& l){
+  
+  if(l.first == NULL){
     first = NULL;
     last = NULL;
-    }
-  
-  Lista::Lista(const Lista& l){
-    
-    if(l.first == NULL){
-      first = NULL;
-      last = NULL;
-      return;
-    }
-    
-    elem *current_elem = new elem;
-    current_elem->value = l.first->value;
-    current_elem->next = NULL;
-    current_elem->prev = NULL;
-    first = current_elem;
-    
-    for(elem *e = l.first->next; e != NULL; e = e->next){
-      elem *newe = new elem;
-      newe->value = e->value;
-      newe->next = NULL;
-      newe->prev = current_elem;
-      current_elem->next = newe;
-      current_elem = newe;
-    }
-    
-    last = current_element;
-    
+    return;
   }
   
-  Lista::~Lista(){
-    elem *e = first;
-    elem *tmp;
-    while(e != NULL){
-      tmp = e->next;
-      delete e;
-      e = tmp;
-    }
+  elem *current_elem = new elem;
+  current_elem->value = l.first->value;
+  current_elem->next = NULL;
+  current_elem->prev = NULL;
+  first = current_elem;
+  
+  for(elem *e = l.first->next; e != NULL; e = e->next){
+    elem *newe = new elem;
+    newe->value = e->value;
+    newe->next = NULL;
+    newe->prev = current_elem;
+    current_elem->next = newe;
+    current_elem = newe;
   }
   
-  //utile per stack (push)
-  void Lista::inserisci_in_cima(int v){
-    elem *e = new elem;
-    e->value = v;
-    e->next = first;
-    e->prev = NULL;
-    first = e;
-  }
-    
-  //utile per coda (enqueue)  
-  void Lista::inserisci_in_coda(int v){
-    elem *e = new elem;
-    e->value = v;
-    e->next = NULL;
-    e->prev = last;
-    last = e;
-  }
+  last = current_element;
   
-  //utile per stack(pop)
-  int Lista::elimina_in_cima(){
-    elem *tmp = first;
-    first = first->next;
-    first->prev = NULL;
-    int result = tmp->value;
-    delete tmp;
-    return result;
-  }
-  
-  //utile per coda(dequque)
-  int Lista::elimina_in_coda(){
-    elem *tmp = last;
-    last = last->prev;
-    last->next = NULL;
-    int result = tmp->value;
-    delete tmp;
-    return result;
+}
+
+Lista::~Lista(){
+  elem *e = first;
+  elem *tmp;
+  while(e != NULL){
+    tmp = e->next;
+    delete e;
+    e = tmp;
   }
 }
 
+//utile per stack (push)
+void Lista::inserisci_in_cima(int v){
+  elem *e = new elem;
+  e->value = v;
+  e->next = first;
+  e->prev = NULL;
+  first = e;
+}
+  
+//utile per coda (enqueue)  
+void Lista::inserisci_in_coda(int v){
+  elem *e = new elem;
+  e->value = v;
+  e->next = NULL;
+  e->prev = last;
+  last = e;
+}
+
+//utile per stack(pop)
+int Lista::elimina_in_cima(){
+  elem *tmp = first;
+  first = first->next;
+  first->prev = NULL;
+  int result = tmp->value;
+  delete tmp;
+  return result;
+}
+
+//utile per coda(dequque)
+int Lista::elimina_in_coda(){
+  elem *tmp = last;
+  last = last->prev;
+  last->next = NULL;
+  int result = tmp->value;
+  delete tmp;
+  return result;
+}
+
+
 ostream& operator<< (ostream& os, const Lista& l){
-  os << '(';
-  for(elem *e = l.first; e != NULL; e = e->next){
-    os << e->value;
-    if(e->next != NULL) os << ", ";
-  }
-  os << ')';
-  return os;
+os << '(';
+for(elem *e = l.first; e != NULL; e = e->next){
+  os << e->value;
+  if(e->next != NULL) os << ", ";
+}
+os << ')';
+return os;
 
 }
