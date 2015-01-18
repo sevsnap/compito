@@ -6,6 +6,7 @@ class Lista{
     ~Lista();
     inserisci_in_cima(int);
     inserisci_in_coda(int);
+    friend ostream& operator<< (ostream&, const Lista&);
   private:
     struct elem{
       int value;
@@ -95,4 +96,15 @@ class Lista{
     delete tmp;
     return result;
   }
+}
+
+ostream& operator<< (ostream& os, const Lista& l){
+  os << '(';
+  for(elem *e = l.first; e != NULL; e = e->next){
+    os << e->value;
+    if(e->next != NULL) os << ", ";
+  }
+  os << ')';
+  return os;
+
 }
