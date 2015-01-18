@@ -12,6 +12,7 @@ class Classe{
     int operator[](int s);
     int operator!();
     Class& operator+=(const Class& c);
+    Class operator- (Colore c) const;
     friend ostream& operator<< (ostream&, const Classe&);
     friend istream& operator>> (istream&, Classe&);
   private:
