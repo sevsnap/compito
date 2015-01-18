@@ -1,1 +1,22 @@
-//questo file conterrà il compito c++
+class Classe{
+  public:
+    Classe();
+    Classe(//parametri);
+    Classe(Classe& c);
+    ~Classe();
+    
+    int operator%(int s);
+    int operator[](int s);
+  private:
+  
+};
+
+Classe::Classe(){
+
+}
+Classe::Classe(//parametri){
+
+}
+Classe::~Classe(){
+
+}
