@@ -52,6 +52,11 @@ ostream& operator<<(ostream& os, const Classe&){
   return os;
 }
 
+istream& operator>> (istream& is, Striscia& s){
+
+  return is;			
+}
+
 void Classe::copia (const Classe& m){
 
 }
