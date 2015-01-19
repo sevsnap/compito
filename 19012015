@@ -1,66 +1,48 @@
-enum enum_t{};
 
-class Classe{
+class Accumulatore{
   public:
-    Classe();
-    Classe(//parametri);
-    Classe(Classe& c);
-    ~Classe();
+    Accumulatore();
+    Accumulatore(Accumulatore&);
+    ~Accumulatore();
     
-    Classe& operator= (const Classe&);
-    int operator%(int s);
-    int operator[](int s);
+    Accumulatore& operator= (const Accumulatore&);
+    int operator%(int);
     int operator!();
-    Class& operator+=(const Class& c);
-    Class operator- (Colore c) const;
-    friend ostream& operator<< (ostream&, const Classe&);
-    friend istream& operator>> (istream&, Classe&);
+    void inserisci(int);
+    int estrai(int, int);
   private:
-    void copia (const Classe& m);
+    void copia (const Accumulatore&);
     void distruggi();
   
 };
 
-Classe::Classe(){
+Accumulatore::Accumulatore(){
 
 }
 
-Classe::Classe(//parametri){
-
-}
-
-Classe::Classe(Classe& c){
+Accumulatore::Accumulatore(Accumulatore& a){
   copia(c);
 }
 
-Classe::~Classe(){
+Accumulatore::~Accumulatore(){
   distuggi();
 }
 
-Classe& Classe::operator= (const Classe& m)
+Accumulatore& Accumulatore::operator= (const Accumulatore& a)
 {
-  if (this != &m)
+  if (this != &a)
     {
       distruggi();
-      copia(m);
+      copia(a);
     }
   return *this;
 }
 
-ostream& operator<<(ostream& os, const Classe&){
 
-  return os;
-}
-
-istream& operator>> (istream& is, Striscia& s){
-
-  return is;			
-}
-
-void Classe::copia (const Classe& m){
+voidAccumulatore::copia (const Accumulatore& a){
 
 }
 
-void Classe::distruggi(){
+void Accumulatore::distruggi(){
 
 }
