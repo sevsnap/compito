@@ -4,9 +4,8 @@ class Lista{
     Lista();
     Lista(const Lista&);
     ~Lista();
-    inserisci_in_cima(int);
-    inserisci_in_coda(int);
-    friend ostream& operator<< (ostream&, const Lista&);
+    void inserisci_in_testa(int);
+    int elimina_in_coda(int);
   private:
     struct elem{
       int value;
@@ -63,8 +62,7 @@ Lista::~Lista(){
   }
 }
 
-//utile per stack (push)
-void Lista::inserisci_in_cima(int v){
+void Lista::inserisci_in_testa(int v){
   elem *e = new elem;
   e->value = v;
   e->next = first;
@@ -73,28 +71,6 @@ void Lista::inserisci_in_cima(int v){
   num_elementi++;
 }
   
-//utile per coda (enqueue)  
-void Lista::inserisci_in_coda(int v){
-  elem *e = new elem;
-  e->value = v;
-  e->next = NULL;
-  e->prev = last;
-  last = e;
-  num_elementi++;
-}
-
-//utile per stack(pop)
-int Lista::elimina_in_cima(){
-  elem *tmp = first;
-  first = first->next;
-  first->prev = NULL;
-  int result = tmp->value;
-  delete tmp;
-  num_elementi--;
-  return result;
-}
-
-//utile per coda(dequque)
 int Lista::elimina_in_coda(){
   elem *tmp = last;
   last = last->prev;
@@ -103,5 +79,9 @@ int Lista::elimina_in_coda(){
   delete tmp;
   num_elementi--;
   return result;
+}
+
+int Lista::getSize(){
+  return num_elementi;
 }
 
