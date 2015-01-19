@@ -15,11 +15,13 @@ class Lista{
       }
     elem *first;
     elem *last;
+    int num_elementi;
 };
   
 Lista::Lista(){
   first = NULL;
   last = NULL;
+  num_elementi = 0;
 }
 
 Lista::Lista(const Lista& l){
@@ -27,6 +29,7 @@ Lista::Lista(const Lista& l){
   if(l.first == NULL){
     first = NULL;
     last = NULL;
+    num_elementi = 0;
     return;
   }
   
@@ -46,6 +49,7 @@ Lista::Lista(const Lista& l){
   }
   
   last = current_element;
+  num_elementi = l.num_elementi;
   
 }
 
@@ -66,6 +70,7 @@ void Lista::inserisci_in_cima(int v){
   e->next = first;
   e->prev = NULL;
   first = e;
+  num_elementi++;
 }
   
 //utile per coda (enqueue)  
@@ -75,6 +80,7 @@ void Lista::inserisci_in_coda(int v){
   e->next = NULL;
   e->prev = last;
   last = e;
+  num_elementi++;
 }
 
 //utile per stack(pop)
@@ -84,6 +90,7 @@ int Lista::elimina_in_cima(){
   first->prev = NULL;
   int result = tmp->value;
   delete tmp;
+  num_elementi--;
   return result;
 }
 
@@ -94,17 +101,7 @@ int Lista::elimina_in_coda(){
   last->next = NULL;
   int result = tmp->value;
   delete tmp;
+  num_elementi--;
   return result;
 }
 
-
-ostream& operator<< (ostream& os, const Lista& l){
-os << '(';
-for(elem *e = l.first; e != NULL; e = e->next){
-  os << e->value;
-  if(e->next != NULL) os << ", ";
-}
-os << ')';
-return os;
-
-}
