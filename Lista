@@ -5,7 +5,7 @@ class Lista{
     Lista(const Lista&);
     ~Lista();
     void inserisci_in_testa(int);
-    int elimina_in_coda(int);
+    int elimina_in_coda();
   private:
     struct elem{
       int value;
