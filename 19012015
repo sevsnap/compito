@@ -62,8 +62,16 @@ int Accumulatore::estrai(int modo, int& v){
       return 0;
     }
   }
-}  
+} 
+
+int Accumulatore::operator%(int modo){
+  if(modo > 0) return accumulatore_positivo.getSize();
+  else if (modo == 0) return zeri;
+  else return accumulatore_negativo.getSize();
+}
   
+int Accumulatore::operator!(){
+  return accumulatore_positivo.getSize() + accumulatore_negativo.getSize() + zeri;
 }
 
 
