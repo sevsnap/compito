@@ -14,8 +14,6 @@ class Accumulatore{
     void inserisci(int);
     int estrai(int, int&);
   private:
-    void copia (const Accumulatore&);
-    void distruggi();
     Lista accumulatore_positivo;
     Lista accumulatore_negativo;
     int zeri;
