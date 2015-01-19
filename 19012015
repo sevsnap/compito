@@ -2,47 +2,74 @@
 class Accumulatore{
   public:
     Accumulatore();
-    Accumulatore(Accumulatore&);
-    ~Accumulatore();
     
-    Accumulatore& operator= (const Accumulatore&);
+//  costruttore di copia, operatore di assegnazione e distruttore
+//  sono quelli generati automaticamente dal compilatore
+//  Accumulatore(Accumulatore&);
+//  ~Accumulatore();
+    
+//  Accumulatore& operator= (const Accumulatore&);
     int operator%(int);
     int operator!();
     void inserisci(int);
-    int estrai(int, int);
+    int estrai(int, int&);
   private:
     void copia (const Accumulatore&);
     void distruggi();
+    Lista accumulatore_positivo;
+    Lista accumulatore_negativo;
+    int zeri;
   
 };
 
 Accumulatore::Accumulatore(){
-
+  zeri = 0;
 }
 
-Accumulatore::Accumulatore(Accumulatore& a){
-  copia(c);
+void Accumulatore::inserisci(int v){
+  if(v > 0) accumulatore_positivo.inserisci_in_testa(v);
+  else if(v == 0) zeri++;
+  else accumulatore_negativo.inserisci_in_testa(v);
 }
 
-Accumulatore::~Accumulatore(){
-  distuggi();
-}
-
-Accumulatore& Accumulatore::operator= (const Accumulatore& a)
-{
-  if (this != &a)
-    {
-      distruggi();
-      copia(a);
+int Accumulatore::estrai(int modo, int& v){
+  if(modo < 0){
+    if(accumulatore_negativo.getSize() > 0){
+      v = accumulatore_negativo.elimina_in_coda();
+      return 1;
     }
-  return *this;
+    else{
+      cout << "L'accumulatore non contiene elementi negativi" << endl;
+      return 0;
+    }
+  }
+  else if(modo == 0){
+    if(zeri > 0){
+      zeri--;
+      v = 0;
+      return 1;
+    }
+    else{
+      cout << "L'accumulatore non contiene elementi nulli" << endl;
+      return 0;
+    }
+  }
+  else{
+    if(accumulatore_positivo.getSize() > 0){
+      v = accumulatore_positivo.elimina_in_coda();
+      return 1;
+      }
+    else{
+      cout << "L'accumulatore non contiene elementi positivi" << endl;
+      return 0;
+    }
+  }
+}  
+  
 }
 
 
-voidAccumulatore::copia (const Accumulatore& a){
 
-}
 
-void Accumulatore::distruggi(){
 
-}
+
