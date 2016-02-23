@@ -1,5 +1,5 @@
 
-push R0
+push R0  //salva i registri usati
 push R1
 push R2
 push R16
@@ -13,7 +13,7 @@ push YH
 
 
 
-pop R0
+pop R0  //ripristina i registri
 pop R1
 pop R2
 pop R16
