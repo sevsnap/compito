@@ -23,8 +23,9 @@ delay:
   brcs restore                            2 //2 cicli se la condizione è vera
 
 loop:
-  sbiw R0,1
-  brcc loop
+  sbiw R0,4                               2
+  brcc loop                               2 //2 cicli se la condizione è vera
+//all'interno del loop resto per 4 cicli di clock per iterazione
 
 restore:
   pop R0  //ripristina i registri         2
@@ -34,7 +35,7 @@ restore:
   pop R19                                 2
   ret                                     4
                                        ____
-lower bound of clock cycles             37
+lower bound of clock cycles             37  ----> non include i cicli del loop
 
 *******
 il massimo ritardo possibile si ha quando a e b sono uguali a 0, ed è pari a 37.
