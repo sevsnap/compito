@@ -1,27 +1,21 @@
 
 push R0  //salva i registri usati
 push R1
-push R2
-push R16
 push R17
 push R18
-push XL
-push XH
-push YL
-push YH
+push R19
 
-
-
+ld R17,X    //load a
+ld R18,X+1  //load b
+ldi R19,0
+mul R16,R18
+add R0,R17
+adc R1,R19
 
 pop R0  //ripristina i registri
 pop R1
-pop R2
-pop R16
 pop R17
 pop R18
-pop XL
-pop XH
-pop YL
-pop YH
+pop R19
 
 ret
