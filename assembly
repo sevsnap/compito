@@ -35,3 +35,9 @@ restore:
   ret                                     4
                                        ____
 lower bound of clock cycles             37
+
+*******
+il massimo ritardo possibile si ha quando a e b sono uguali a 0, ed è pari a 37.
+in questo caso infatti a + bN = 0, mentre il numero di cicli di clock occupati dalla subroutine è comunque 37
+*******
+coded for Stefano Cameli
