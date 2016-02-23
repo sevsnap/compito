@@ -1,38 +1,37 @@
 
 
                                         clock cycles per instruction
-push R0  //salva i registri usati       2   
-push R1                                 2
-push R17                                2
-push R18                                2
-push R19                                2
+delay:
+  push R0  //salva i registri usati       2   
+  push R1                                 2
+  push R17                                2
+  push R18                                2
+  push R19                                2
+  
+  //supponiamo a e b salvati in memoria 
+  //a partire dall'indirizzo contenuto in X
+  ld R17,X    //load a                    2
+  ld R18,X+1  //load b                    2
+  ldi R19,0                               1
+  mul R16,R18                             2
+  add R0,R17                              1
+  adc R1,R19                              1
+  //R1:R0 contiene a + bN
 
-
-//supponiamo a e b salvati in memoria 
-//a partire dall'indirizzo contenuto in X
-
-ld R17,X    //load a                    2
-ld R18,X+1  //load b                    2
-ldi R19,0                               1
-mul R16,R18                             2
-add R0,R17                              1
-adc R1,R19                              1
-//R1:R0 contiene a + bN
-
-sbiw R0,                                2
-brcs restore
+  //37 è il numero minimo di cicli di clock impiegati dalla subroutine
+  sbiw R0,37                              2   
+  brcs restore                            2 //2 cicli se la condizione è vera
 
 loop:
-dec 
-
+  sbiw R0,1
+  brcc loop
 
 restore:
-pop R0  //ripristina i registri         2
-pop R1                                  2
-pop R17                                 2
-pop R18                                 2
-pop R19                                 2
-
-ret                                     4
+  pop R0  //ripristina i registri         2
+  pop R1                                  2
+  pop R17                                 2
+  pop R18                                 2
+  pop R19                                 2
+  ret                                     4
                                        ____
-lower bound of clock cycles             29
+lower bound of clock cycles             37
