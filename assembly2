@@ -2,6 +2,8 @@
 copy_bytes:
 push R0 //salvo i registri usati
 push R1
+push R2
+push R3
 push R16
 push XL
 push XH
@@ -45,6 +47,8 @@ brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 restore_registers:
 pop R0         //ripristino i registri usati
 pop R1
+pop R2
+pop R3
 pop R16
 pop XL
 pop XH
