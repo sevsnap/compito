@@ -12,13 +12,13 @@ push YH
 
 sbiw R1:R0, 1  //supponiamo che N >= 1
 
-movw R3:R2, XH:XL
+movw R3:R2, XH:XL //copio il dato
 sub R2, YL
 sbc R3, YH  //in R3:R2 c'è A1 - A2
 
 brcs a1_minore_di_a2
 
-a1_maggiore_di_a2:
+a1_maggiore_di_a2:  //se a1 > a2, comincio a copiare dal primo byte e vado avanti, non rischio di scrivere su un dato prima che venga copiato
 
 loop:
 ldd R16, X+    //carico l'n-simo byte in R16 e incremento X
@@ -28,19 +28,19 @@ brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 
 jmp restore_registers
 
-a1_minore_di_a2:
+a1_minore_di_a2:  //se a1 < a2, comincio a copiare dall'ultimo byte a vado indietro, così evitp di scrivere su un dato prima che venga copiato
 
 add XL, R0
-adc XH, R1
+adc XH, R1   //faccio puntare X all'ultimo byte da copiare
 
 add YL, R0
-adc YH, R1
+adc YH, R1   //faccio puntare Y all'ultima locazione di memoria
 
 loop:
-ldd R16, X    //carico l'n-simo byte in R16 e incremento X
-st Y, R16     //copio R16 in Y e incremento Y
-sbiw XH:XL, 1
-sbiw YH:YL, 1
+ldd R16, X    //carico l'n-simo byte in R16
+st Y, R16     //copio R16 in Y
+sbiw XH:XL, 1   //decremento X
+sbiw YH:YL, 1   //decremento Y
 sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
 brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 
