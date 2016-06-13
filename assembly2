@@ -1,23 +1,22 @@
+
+copy_bytes:
 push R0
 push R1
-push R2
 push R16
-push R17
-push R18
 push XL
 push XH
 push YL
 push YH
 
-
-
+loop:
+ldd R16, X+
+st Y+, R16
+sbiw R1:R0, 1
+brcc loop
 
 pop R0
 pop R1
-pop R2
 pop R16
-pop R17
-pop R18
 pop XL
 pop XH
 pop YL
