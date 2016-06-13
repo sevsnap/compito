@@ -10,12 +10,39 @@ push YH
 
 sbiw R1:R0, 1  //supponiamo che N >= 1
 
+movw R3:R2, XH:XL
+sub R2, YL
+sbc R3, YH  //in R3:R2 c'è A1 - A2
+
+brcs a1_minore_di_a2
+
+a1_maggiore_di_a2:
+
 loop:
 ldd R16, X+    //carico l'n-simo byte in R16 e incremento X
 st Y+, R16     //copio R16 in Y e incremento Y
 sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
 brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 
+jmp restore_registers
+
+a1_minore_di_a2:
+
+add XL, R0
+adc XH, R1
+
+add YL, R0
+adc YH, R1
+
+loop:
+ldd R16, X    //carico l'n-simo byte in R16 e incremento X
+st Y, R16     //copio R16 in Y e incremento Y
+sbiw XH:XL, 1
+sbiw YH:YL, 1
+sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
+brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
+
+restore_registers:
 pop R0         //ripristino i registri usati
 pop R1
 pop R16
