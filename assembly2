@@ -20,11 +20,11 @@ brcs a1_minore_di_a2
 
 a1_maggiore_di_a2:  //se a1 > a2, comincio a copiare dal primo byte e vado avanti, non rischio di scrivere su un dato prima che venga copiato
 
-loop:
+loop1:
 ldd R16, X+    //carico l'n-simo byte in R16 e incremento X
 st Y+, R16     //copio R16 in Y e incremento Y
 sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
-brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
+brcc loop1      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 
 jmp restore_registers
 
@@ -36,13 +36,13 @@ adc XH, R1   //faccio puntare X all'ultimo byte da copiare
 add YL, R0
 adc YH, R1   //faccio puntare Y all'ultima locazione di memoria
 
-loop:
+loop2:
 ldd R16, X    //carico l'n-simo byte in R16
 st Y, R16     //copio R16 in Y
 sbiw XH:XL, 1   //decremento X
 sbiw YH:YL, 1   //decremento Y
 sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
-brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
+brcc loop2      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
 
 restore_registers:
 pop R0         //ripristino i registri usati
