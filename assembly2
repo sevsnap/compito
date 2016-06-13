@@ -1,6 +1,6 @@
 
 copy_bytes:
-push R0
+push R0 //salvo i registri usati
 push R1
 push R16
 push XL
@@ -8,13 +8,15 @@ push XH
 push YL
 push YH
 
-loop:
-ldd R16, X+
-st Y+, R16
-sbiw R1:R0, 1
-brcc loop
+sbiw R1:R0, 1  //supponiamo che N >= 1
 
-pop R0
+loop:
+ldd R16, X+    //carico l'n-simo byte in R16 e incremento X
+st Y+, R16     //copio R16 in Y e incremento Y
+sbiw R1:R0, 1  //calcolo il numero di byte ancora da copiare
+brcc loop      //se R1:R0 > -1 ho ancora byte da copiare, altrimenti termino
+
+pop R0         //ripristino i registri usati
 pop R1
 pop R16
 pop XL
