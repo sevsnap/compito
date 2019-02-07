@@ -128,3 +128,10 @@ void printRoman(int number)
         cout << c[j]; 
     cout << endl;
 } 
+
+
+int number = atoi(line.c_str());
+printRoman(number); 
+return 0; 
+
+
