@@ -19,7 +19,7 @@ void printRoman(int number)
   
     if (number <= 0) 
     { 
-        printf("Invalid number"); 
+        cout << "Invalid number" << endl; 
         return; 
     } 
    
@@ -123,8 +123,8 @@ void printRoman(int number)
         } 
     } 
   
-    // Printing equivalent Roman Numeral 
-    printf("Roman numeral is: "); 
+    cout << "Roman numeral is: "; 
     for (int j = 0; j < i; j++) 
-        printf("%c", c[j]); 
+        cout << c[j]; 
+    cout << endl;
 } 
