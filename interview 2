@@ -1,1 +1,10 @@
 
+string delimiter = ';';
+int pos = s.find(delimiter);
+string price;
+string cash;
+
+price = line.substr(0, pos);
+line.erase(0, pos + delimiter.length());
+cash = line;
+
