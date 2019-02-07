@@ -1,5 +1,5 @@
 
-void cash_register(string input)
+void cash_register(string input){
 
 string delimiter = ';';
 int pos = input.find(delimiter);
@@ -59,7 +59,7 @@ while(change > 0){
       }
       if(cash > 0) cout << ", ";
    }
-
+}
       
 
    
