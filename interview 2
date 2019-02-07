@@ -1,10 +1,66 @@
 
+void cash_register(string input)
+
 string delimiter = ';';
-int pos = s.find(delimiter);
+int pos = input.find(delimiter);
 double price;
 double cash;
 
-price = stod(line.substr(0, pos));
+price = stod(input.substr(0, pos));
 line.erase(0, pos + delimiter.length());
-cash = stod(line);
+cash = stod(input);
 
+double change = cash - price;
+
+while(change > 0){
+  if(change > 100){
+      cout << "ONE HUNDRED";
+      cash -= 100;
+      }
+  else if(change > 50){
+      cout << "FIFTY";
+      cash -= 50;
+      } 
+  else if(change > 10){
+      cout << "TEN";
+      cash -= 10;
+      } 
+  else if(change > 5){
+      cout << "FIVE";
+      cash -= 5;
+      }
+    else if(change > 2){
+      cout << "TWO";
+      cash -= 2;
+      }
+    else if(change > 1){
+      cout << "ONE";
+      cash -= 1;
+      }
+    else if(change > 0.5){
+      cout << "HALF DOLLAR";
+      cash -= 0.5;
+      }
+  else if(change > 0.25){
+      cout << "QUARTER";
+      cash -= 0.25;
+      }
+  else if(change > 0.10){
+      cout << "DIME";
+      cash -= 0.10;
+      }
+  else if(change > 0.05){
+      cout << "NICKEL";
+      cash -= 0.05;
+      }
+   else if(change > 0.01){
+      cout << "PENNY";
+      cash -= 0.01;
+      }
+      if(cash > 0) cout << ", ";
+   }
+
+      
+
+   
+  
